@@ -14,7 +14,7 @@ sha256sums=('SKIP')
 build() {
     cd "${srcdir}/${pkgname}-${pkgver}"
     
-    export CGO_ENABLED=0
+    export CGO_ENABLED=1    
     export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
     
     go build -o ${pkgname} ./cmd/peekfetch
@@ -33,8 +33,6 @@ package() {
     
     # Install documentation
     install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
-    install -Dm644 QUICKSTART.md "${pkgdir}/usr/share/doc/${pkgname}/QUICKSTART.md"
-    install -Dm644 FEATURES.md "${pkgdir}/usr/share/doc/${pkgname}/FEATURES.md"
     
     # Install license if you create one
     # install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
