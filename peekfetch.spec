@@ -22,9 +22,8 @@ Bubble Tea, and Lipgloss.
 
 %build
 export CGO_ENABLED=0
-export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 
-go build -o %{name} ./cmd/peekfetch
+go build -trimpath -ldflags="-s -w" -o %{name} ./cmd/peekfetch
 
 %install
 # Install binary
@@ -32,8 +31,6 @@ install -Dm755 %{name} %{buildroot}%{_bindir}/%{name}
 
 # Install documentation
 install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
-install -Dm644 QUICKSTART.md %{buildroot}%{_docdir}/%{name}/QUICKSTART.md
-install -Dm644 FEATURES.md %{buildroot}%{_docdir}/%{name}/FEATURES.md
 
 # Install license if you create one
 # install -Dm644 LICENSE %{buildroot}%{_licensedir}/%{name}/LICENSE
@@ -44,8 +41,6 @@ go test -v ./...
 %files
 %{_bindir}/%{name}
 %{_docdir}/%{name}/README.md
-%{_docdir}/%{name}/QUICKSTART.md
-%{_docdir}/%{name}/FEATURES.md
 # %license LICENSE
 %doc README.md
 
