@@ -206,7 +206,7 @@ upx peekfetch
 
 ## License
 
-MIT
+[MIT](https://github.com/YashSaini99/peekfetch/blob/main/LICENSE)
 
 ## Credits
 
